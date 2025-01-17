@@ -37,7 +37,7 @@ export const NavLinks = () => {
             <Link
               href={link.href}
               key={link.name}
-              className={clsx('flex justify-center md:justify-start md:items-center p-2 bg-gray-100 w-full hover:bg-gray-300 rounded-sm', {'bg-blue-500 text-gray-100 hover:bg-blue-600': pathname === link.href})}
+              className={clsx('flex justify-center md:justify-start md:items-center p-2 bg-gray-100 w-full hover:bg-gray-300 rounded-sm', {'bg-blue-800 text-gray-100 hover:bg-blue-800': pathname === link.href})}
             >
               <LinkIcon className="md:h-8 h-6" />
               <p className="hidden md:block pl-2">{link.name}</p>
