@@ -40,6 +40,33 @@ const DynamicMap: React.FC<{
     }
   };
 
+  const clickHighlightFeature = (e: LeafletMouseEvent) => {
+    var layer = e.target;
+
+    layer.setStyle({
+      weight: 5,
+      color: "#666",
+      dashArray: "",
+      fillOpacity: 0.7,
+    });
+
+    layer.bringToFront();
+    if (mapEL) {
+      L.popup()
+        ?.setLatLng(e.latlng)
+        .setContent(
+          "BRGY NAME:" +
+            layer.feature.properties.DISPLAYNAME +
+            "<br>" +
+            "MEMBER:" +
+            layer.feature.properties.DENSITY.toString()
+        )
+        .openOn(mapEL);
+    }
+  };
+
+
+
   function zoomToFeature(e: any) {
     mapEL?.fitBounds(e.target.getBounds());
   }
@@ -49,7 +76,8 @@ const DynamicMap: React.FC<{
       layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: zoomToFeature,
+        click: clickHighlightFeature,
+        // doubleClick: zoomToFeature
       });
     // }
   };
